@@ -35,9 +35,7 @@ export function ConceptWork() {
                         </li>
                       ))}
                     </ul>
-                    <p className="mt-6 text-xs text-muted">
-                      Click any piece to zoom in and read the strategy notes.
-                    </p>
+                    <p className="mt-6 text-xs text-muted">Click any piece to zoom in.</p>
                   </div>
 
                   <div className="flex-1 space-y-10">
