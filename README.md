@@ -15,23 +15,45 @@ Open [http://localhost:3000](http://localhost:3000).
 
 ## Structure
 
-- `src/app` — pages: home, `/work` (+ `/work/[slug]` case studies), `/services`, `/about`, `/contact`
-- `src/components` — UI building blocks (header, footer, hero, sections, email mockup frame)
-- `src/lib/case-studies.ts` — portfolio data (client, flows, email pieces) for `/work`
+- `src/app` — pages: home, `/work` (+ `/work/[slug]` case studies), `/audits`, `/services`, `/contact`
+- `src/components` — UI building blocks (header, footer, hero, sections, email mockup frame, lightbox)
+- `src/lib/case-studies.ts` — client case study data (flows, email pieces) for `/work`
+- `src/lib/general-designs.ts` — standalone pieces (no case-study treatment) for `/work`
+- `src/lib/concepts.ts` — self-initiated / non-client concept work for `/work`
+- `src/lib/audits.ts` — before/after audit comparisons for `/audits`
 - `src/lib/content.ts` — services, pricing tiers & process copy
 - `src/lib/site.ts` — nav links, contact info, site metadata
 
 ## Adding real screenshots
 
-Each email in `src/lib/case-studies.ts` (`EmailPiece`) shows a styled
-placeholder until it has a real screenshot. To swap one in:
+Pieces in `case-studies.ts`, `general-designs.ts`, `concepts.ts`, and
+`audits.ts` show a styled placeholder until they have a real screenshot.
+To swap one in:
 
-1. Drop the image in `public/work/<client-slug>/<file>.png`
-2. Set that piece's `image` field to `/work/<client-slug>/<file>.png`
+1. Drop the image under `public/work/...` (there's already a
+   subfolder per client/project — follow the existing pattern)
+2. Set that piece's `image` field (or `before.image` / `after.image`
+   for an audit) to the matching `/work/...` path
 
-The placeholder disappears automatically once `image` is set. To add a
-brand-new design that isn't part of an existing client flow, add a new
-`CaseStudy` (or a piece to an existing one) in `src/lib/case-studies.ts`.
+The placeholder disappears automatically once `image` is set.
+
+### Adding an audit (before/after)
+
+Each entry in `audits.ts` is an `AuditProject` with a `pieces` array.
+To add a before/after comparison:
+
+```ts
+{
+  name: "Welcome Email",
+  issue: "No incentive to open past email #1",
+  before: { image: "/work/audits/bitter-truth-coffee/welcome-before.png", accent: "#..." },
+  after: { image: "/work/audits/bitter-truth-coffee/welcome-after.png", accent: "#..." },
+  whatChanged: ["...", "..."],
+}
+```
+
+`whatChanged` is optional-in-spirit but should usually be filled in —
+it's the strategist rationale shown under each comparison.
 
 ## Deploying
 
