@@ -33,8 +33,6 @@ export default async function CaseStudyPage({
   const study = caseStudies.find((s) => s.slug === slug);
   if (!study) notFound();
 
-  const flows = Array.from(new Set(study.pieces.map((p) => p.flow)));
-
   return (
     <>
       <section className="container-page pt-20 pb-16 md:pt-28">
@@ -63,23 +61,18 @@ export default async function CaseStudyPage({
         </Reveal>
       </section>
 
-      {flows.map((flow, i) => (
-        <section key={flow} className="container-page pb-20">
-          <Reveal delay={i * 0.05}>
-            <h2 className="font-display text-xl font-bold">{flow}</h2>
-            <div className="mt-6 grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4">
-              {study.pieces
-                .filter((p) => p.flow === flow)
-                .map((piece) => (
-                  <div key={piece.subject}>
-                    <EmailFrame piece={piece} client={study.client} />
-                    <p className="mt-3 text-sm leading-snug text-muted">{piece.subject}</p>
-                  </div>
-                ))}
-            </div>
-          </Reveal>
-        </section>
-      ))}
+      <section className="container-page pb-20">
+        <Reveal>
+          <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4">
+            {study.pieces.map((piece) => (
+              <div key={piece.subject}>
+                <EmailFrame piece={piece} client={study.client} />
+                <p className="mt-3 text-sm leading-snug text-muted">{piece.subject}</p>
+              </div>
+            ))}
+          </div>
+        </Reveal>
+      </section>
 
       <CtaBand />
     </>

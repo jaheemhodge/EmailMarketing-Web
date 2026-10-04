@@ -21,7 +21,7 @@ export function EmailFrame({ piece, client }: { piece: Piece; client?: string })
       onClick={() =>
         openLightbox({
           title: piece.subject,
-          subtitle: client ? `${client} — ${piece.flow}` : piece.flow,
+          subtitle: client,
           image: piece.image,
           accent: piece.accent,
           analysis: piece.analysis,
@@ -33,7 +33,6 @@ export function EmailFrame({ piece, client }: { piece: Piece; client?: string })
         <span className="h-2 w-2 rounded-full bg-foreground/20" />
         <span className="h-2 w-2 rounded-full bg-foreground/20" />
         <span className="h-2 w-2 rounded-full bg-foreground/20" />
-        <span className="ml-2 truncate text-[11px] text-muted">{piece.flow}</span>
       </div>
 
       <div className="relative aspect-[9/16] w-full overflow-hidden">
