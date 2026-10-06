@@ -74,7 +74,7 @@ function LightboxModal({ item, onClose }: { item: LightboxItem; onClose: () => v
             src={item.image}
             alt={item.title}
             className={`block transition-[width] duration-300 ${
-              zoomed ? "w-[230%] max-w-none" : "w-full"
+              zoomed ? "w-[230%] max-w-none" : "h-full w-full object-contain"
             }`}
           />
         ) : (
