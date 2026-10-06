@@ -55,4 +55,32 @@ export const concepts: ConceptProject[] = [
       },
     ],
   },
+  {
+    slug: "bite",
+    brand: "Bite",
+    industry: "Oral Care / Concept",
+    summary:
+      "Bite is not a past or current client — these are self-initiated concept emails, built end to end (strategy, copy, and design) to show how I'd approach an oral care brand's education and cart-recovery sends.",
+    tags: ["Self-Initiated Concept", "Strategy + Copywriting", "Design"],
+    pieces: [
+      {
+        subject: "What Is Foundational Oral Care?",
+        flow: "Welcome Flow",
+        accent: "#6e8fae",
+        image: "/work/concepts/bite-1.png",
+      },
+      {
+        subject: "Skip The Water, Keep The Clean",
+        flow: "Abandoned Checkout",
+        accent: "#9a9a9a",
+        image: "/work/concepts/bite-2.png",
+      },
+      {
+        subject: "Made To Brush Better",
+        flow: "Campaign",
+        accent: "#b0735a",
+        image: "/work/concepts/bite-3.png",
+      },
+    ],
+  },
 ];
