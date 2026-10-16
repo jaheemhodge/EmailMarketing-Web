@@ -43,7 +43,7 @@ const details: Record<string, string[]> = {
 export default function ServicesPage() {
   return (
     <>
-      <section className="container-page pt-20 pb-16 md:pt-28">
+      <section className="container-page pt-28 pb-16 md:pt-36">
         <SectionHeading
           eyebrow="Services"
           title="Retention marketing, run as one system."

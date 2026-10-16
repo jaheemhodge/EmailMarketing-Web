@@ -7,10 +7,15 @@ export const site = {
   founder: "Jaheem Hodge",
   email: "jaheemhodge62@gmail.com",
   bookingUrl: "#contact",
-  instagram: "https://instagram.com",
 };
 
 export const navLinks = [
+  { label: "Work", href: "/work" },
+  { label: "Services", href: "/services" },
+  { label: "Process", href: "/#process" },
+];
+
+export const footerLinks = [
   { label: "Work", href: "/work" },
   { label: "Audits", href: "/audits" },
   { label: "Services", href: "/services" },

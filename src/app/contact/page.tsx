@@ -10,7 +10,7 @@ export const metadata: Metadata = {
 
 export default function ContactPage() {
   return (
-    <section className="container-page grid gap-16 pt-20 pb-24 md:grid-cols-[1fr_1.1fr] md:pt-28 md:pb-32">
+    <section className="container-page grid gap-16 pt-28 pb-24 md:grid-cols-[1fr_1.1fr] md:pt-36 md:pb-32">
       <Reveal>
         <p className="text-xs font-semibold tracking-widest text-accent uppercase">Contact</p>
         <h1 className="font-display mt-4 text-4xl leading-[1.05] font-bold text-balance sm:text-5xl">

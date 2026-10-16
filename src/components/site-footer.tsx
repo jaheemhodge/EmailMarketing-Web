@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { navLinks, site } from "@/lib/site";
+import { footerLinks, site } from "@/lib/site";
 
 export function SiteFooter() {
   return (
@@ -21,7 +21,7 @@ export function SiteFooter() {
               Site
             </p>
             <ul className="mt-4 space-y-3">
-              {navLinks.map((link) => (
+              {footerLinks.map((link) => (
                 <li key={link.href}>
                   <Link
                     href={link.href}
@@ -53,16 +53,6 @@ export function SiteFooter() {
                   className="text-sm text-foreground/80 transition-colors hover:text-accent"
                 >
                   {site.email}
-                </a>
-              </li>
-              <li>
-                <a
-                  href={site.instagram}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="text-sm text-foreground/80 transition-colors hover:text-accent"
-                >
-                  Instagram
                 </a>
               </li>
             </ul>

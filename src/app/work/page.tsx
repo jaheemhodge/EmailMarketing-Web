@@ -17,7 +17,7 @@ export const metadata: Metadata = {
 export default function WorkPage() {
   return (
     <>
-      <section className="container-page pt-20 pb-16 md:pt-28">
+      <section className="container-page pt-28 pb-16 md:pt-36">
         <SectionHeading
           eyebrow="Work"
           title="Real flows, for real brands."
