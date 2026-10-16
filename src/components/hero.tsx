@@ -7,7 +7,26 @@ import { EASE_OUT } from "@/lib/motion";
 import { caseStudies } from "@/lib/case-studies";
 
 const study = caseStudies[0];
-const heroPiece = study.pieces[0];
+const collage = [
+  {
+    piece: study.pieces[0],
+    rotate: -3,
+    z: 3,
+    className: "right-0 top-0 w-[200px] md:w-[230px]",
+  },
+  {
+    piece: study.pieces[2],
+    rotate: 6,
+    z: 2,
+    className: "hidden sm:block right-[150px] top-16 w-[140px] md:right-[175px] md:w-[160px]",
+  },
+  {
+    piece: study.pieces[4],
+    rotate: -8,
+    z: 1,
+    className: "hidden lg:block right-[300px] top-6 w-[130px]",
+  },
+];
 
 export function Hero() {
   const reduceMotion = useReducedMotion();
@@ -39,22 +58,28 @@ export function Hero() {
         </p>
       </motion.div>
 
-      <motion.div
-        initial={{ opacity: 0, y: reduceMotion ? 0 : 24, rotate: 0 }}
-        animate={{ opacity: 1, y: 0, rotate: reduceMotion ? 0 : -3 }}
-        transition={{ duration: 0.7, delay: 0.15, ease: EASE_OUT }}
-        className="relative ml-auto aspect-[9/16] w-full max-w-[220px] overflow-hidden rounded-xl border border-border shadow-xl md:-mb-10 md:max-w-[260px]"
-      >
-        {heroPiece.image ? (
-          <Image
-            src={heroPiece.image}
-            alt={heroPiece.subject}
-            fill
-            className="object-cover object-top"
-            priority
-          />
-        ) : null}
-      </motion.div>
+      <div className="relative h-[300px] w-full md:-mb-10 md:h-[340px]">
+        {collage.map(({ piece, rotate, z, className }, i) => (
+          <motion.div
+            key={piece.subject}
+            initial={{ opacity: 0, y: reduceMotion ? 0 : 24, rotate: 0 }}
+            animate={{ opacity: 1, y: 0, rotate: reduceMotion ? 0 : rotate }}
+            transition={{ duration: 0.7, delay: 0.1 + i * 0.1, ease: EASE_OUT }}
+            className={`absolute aspect-[9/16] overflow-hidden rounded-xl border border-border shadow-xl ${className}`}
+            style={{ zIndex: z }}
+          >
+            {piece.image ? (
+              <Image
+                src={piece.image}
+                alt={piece.subject}
+                fill
+                className="object-cover object-top"
+                priority={i === 0}
+              />
+            ) : null}
+          </motion.div>
+        ))}
+      </div>
     </section>
   );
 }

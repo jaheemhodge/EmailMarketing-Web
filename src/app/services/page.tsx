@@ -53,33 +53,35 @@ export default function ServicesPage() {
 
       <PricingTiers />
 
-      <section className="container-page pb-16">
+      <section className="container-page border-t border-border py-20 md:py-28">
         <SectionHeading
           eyebrow="What's included"
           title="Every tier runs on the same core capabilities."
         />
-      </section>
 
-      <section className="container-page grid gap-10 pb-24 sm:grid-cols-2 md:pb-32">
-        {services.map((service, i) => (
-          <Reveal
-            key={service.number}
-            delay={i * 0.08}
-            className="rounded-2xl border border-border bg-surface p-8 md:p-10"
-          >
-            <span className="font-display text-sm text-accent">{service.number}</span>
-            <h2 className="font-display mt-4 text-2xl font-bold">{service.title}</h2>
-            <p className="mt-3 leading-relaxed text-muted">{service.description}</p>
-            <ul className="mt-6 space-y-2.5 border-t border-border pt-6">
-              {details[service.title]?.map((item) => (
-                <li key={item} className="flex items-start gap-2.5 text-sm text-foreground/85">
-                  <span className="mt-2 h-1 w-1 shrink-0 rounded-full bg-accent" />
-                  {item}
-                </li>
-              ))}
-            </ul>
-          </Reveal>
-        ))}
+        <div className="mt-12 divide-y divide-border border-t border-border">
+          {services.map((service, i) => (
+            <Reveal
+              key={service.number}
+              delay={i * 0.06}
+              className="flex flex-col gap-4 py-8 sm:flex-row sm:gap-10"
+            >
+              <div className="sm:w-64 sm:shrink-0">
+                <span className="font-display text-sm text-accent-2">{service.number}</span>
+                <h2 className="font-display mt-2 text-2xl font-bold">{service.title}</h2>
+                <p className="mt-3 leading-relaxed text-muted">{service.description}</p>
+              </div>
+              <ul className="flex-1 space-y-2.5 sm:border-l sm:border-border sm:pl-10">
+                {details[service.title]?.map((item) => (
+                  <li key={item} className="flex items-start gap-2.5 text-sm text-foreground/85">
+                    <span className="mt-2 h-1 w-1 shrink-0 rounded-full bg-accent" />
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </Reveal>
+          ))}
+        </div>
       </section>
 
       <ProcessSteps />

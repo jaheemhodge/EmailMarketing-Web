@@ -43,7 +43,7 @@ export function BeforeAfterCard({ piece, client }: { piece: AuditPiece; client: 
       </div>
 
       {piece.whatChanged.length > 0 ? (
-        <div className="mt-6 max-w-xl rounded-2xl border border-border bg-surface p-6">
+        <div className="mt-6 max-w-xl border-t border-border pt-5">
           <p className="text-xs font-semibold tracking-widest text-muted uppercase">
             What changed
           </p>

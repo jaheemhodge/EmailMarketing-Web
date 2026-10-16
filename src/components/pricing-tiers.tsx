@@ -1,79 +1,85 @@
 import Link from "next/link";
-import { Calendar, Check, Crown, Layers, Search } from "lucide-react";
-import { SectionHeading } from "@/components/section-heading";
 import { Reveal } from "@/components/reveal";
 import { engagementTiers } from "@/lib/content";
 
-const icons = { search: Search, layers: Layers, calendar: Calendar, crown: Crown };
-
 export function PricingTiers() {
   return (
-    <section id="tiers" className="container-page py-24 md:py-32">
-      <SectionHeading
-        eyebrow="Ways to work together"
-        title="Pick the level of ownership that fits where you are now."
-        description="Every brand needs something different from a retention partner. Start where you are, and move up the ladder when you're ready."
-      />
+    <section id="tiers" className="container-page py-20 md:py-28">
+      <Reveal>
+        <h2 className="font-display max-w-xl text-3xl font-bold text-balance sm:text-4xl">
+          Pick the level of ownership that fits where you are now.
+        </h2>
+        <p className="mt-4 max-w-xl leading-relaxed text-muted">
+          Every brand needs something different from a retention partner. Start where you are,
+          and move up the ladder when you&apos;re ready.
+        </p>
 
-      <div className="mt-16 grid gap-6 md:grid-cols-2 lg:grid-cols-4">
-        {engagementTiers.map((tier, i) => {
-          const Icon = icons[tier.icon];
-          return (
-            <Reveal key={tier.title} delay={i * 0.08}>
-              <div className="flex h-full flex-col overflow-hidden rounded-2xl border border-border">
-                <div className="bg-foreground p-6 text-background">
-                  <span className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-background/30">
-                    <Icon className="h-5 w-5" strokeWidth={1.75} />
-                  </span>
-                  <p className="mt-5 text-xs font-semibold tracking-widest text-accent-2 uppercase">
-                    {tier.tag}
-                  </p>
-                  <h3 className="font-display mt-1 text-xl font-bold">{tier.title}</h3>
-                  <p className="mt-2 text-sm leading-relaxed text-background/70">
-                    {tier.tagline}
-                  </p>
-                </div>
-
-                <div className="flex flex-1 flex-col bg-surface p-6">
-                  <p className="text-xs font-semibold tracking-widest text-muted uppercase">
-                    Best for
-                  </p>
-                  <p className="mt-2 text-sm leading-relaxed text-foreground/85">
-                    {tier.bestFor}
-                  </p>
-
-                  <p className="mt-5 text-xs font-semibold tracking-widest text-muted uppercase">
-                    You get
-                  </p>
-                  <ul className="mt-2 space-y-2">
-                    {tier.includes.map((item) => (
-                      <li key={item} className="flex items-start gap-2 text-sm text-foreground/85">
-                        <Check className="mt-0.5 h-3.5 w-3.5 shrink-0 text-accent-2" strokeWidth={2.5} />
-                        {item}
-                      </li>
-                    ))}
-                  </ul>
-
-                  <div className="mt-6 flex-1 border-t border-border pt-5">
-                    <p className="font-display text-lg font-bold">{tier.priceLabel}</p>
-                  </div>
-
-                  <Link
-                    href="/contact"
-                    className={`mt-5 inline-flex items-center justify-center rounded-full px-5 py-3 text-sm font-semibold transition-transform hover:scale-[1.02] active:scale-[0.97] ${
-                      tier.highlight
-                        ? "bg-accent text-background"
-                        : "border border-border text-foreground"
-                    }`}
+        <div className="mt-10 overflow-x-auto">
+          <table className="w-full min-w-[720px] border-collapse text-left text-sm">
+            <thead>
+              <tr>
+                <th className="w-40 border-b border-border pb-4 font-normal text-muted"> </th>
+                {engagementTiers.map((tier) => (
+                  <th key={tier.title} className="border-b border-border px-4 pb-4 align-bottom">
+                    <p className="text-xs font-semibold tracking-widest text-accent-2 uppercase">
+                      {tier.tag}
+                    </p>
+                    <p className="font-display mt-1 text-lg font-bold text-foreground">
+                      {tier.title}
+                    </p>
+                  </th>
+                ))}
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td className="border-b border-border py-4 align-top text-xs font-semibold tracking-widest text-muted uppercase">
+                  Best for
+                </td>
+                {engagementTiers.map((tier) => (
+                  <td
+                    key={tier.title}
+                    className="border-b border-border px-4 py-4 align-top text-foreground/85"
                   >
-                    Book a Call →
-                  </Link>
-                </div>
-              </div>
-            </Reveal>
-          );
-        })}
-      </div>
+                    {tier.bestFor}
+                  </td>
+                ))}
+              </tr>
+              <tr>
+                <td className="border-b border-border py-4 align-top text-xs font-semibold tracking-widest text-muted uppercase">
+                  You get
+                </td>
+                {engagementTiers.map((tier) => (
+                  <td key={tier.title} className="border-b border-border px-4 py-4 align-top">
+                    <ul className="space-y-1.5 text-foreground/85">
+                      {tier.includes.map((item) => (
+                        <li key={item}>— {item}</li>
+                      ))}
+                    </ul>
+                  </td>
+                ))}
+              </tr>
+              <tr>
+                <td className="py-5"> </td>
+                {engagementTiers.map((tier) => (
+                  <td key={tier.title} className="px-4 py-5">
+                    <Link
+                      href="/contact"
+                      className={`inline-flex items-center justify-center rounded-full px-5 py-2.5 text-sm font-semibold transition-transform active:scale-[0.97] ${
+                        tier.highlight
+                          ? "bg-accent text-background"
+                          : "border border-border text-foreground"
+                      }`}
+                    >
+                      Book a Call →
+                    </Link>
+                  </td>
+                ))}
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </Reveal>
     </section>
   );
 }
