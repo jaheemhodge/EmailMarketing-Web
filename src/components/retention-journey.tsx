@@ -128,7 +128,7 @@ export function RetentionJourney() {
               className="relative mx-auto aspect-[9/16] w-full max-w-[220px] overflow-hidden rounded-2xl border border-border shadow-soft"
             >
               {stage.image ? (
-                <Image src={stage.image} alt={stage.alt} fill className="object-cover object-top" />
+                <Image src={stage.image} alt={stage.alt} fill sizes="220px" className="object-cover object-top" />
               ) : (
                 <div className="flex h-full w-full flex-col items-center justify-center gap-2 bg-surface-2 p-6 text-center">
                   <p className="text-xs font-semibold tracking-widest text-muted uppercase">

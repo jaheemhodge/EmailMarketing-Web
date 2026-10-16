@@ -41,6 +41,7 @@ export function EmailFrame({ piece, client }: { piece: Piece; client?: string })
             src={piece.image}
             alt={piece.subject}
             fill
+            sizes="(max-width: 640px) 45vw, (max-width: 1024px) 25vw, 220px"
             className="object-cover object-top transition-transform duration-500 group-hover:scale-[1.03]"
           />
         ) : (

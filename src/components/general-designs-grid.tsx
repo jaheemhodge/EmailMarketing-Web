@@ -30,6 +30,7 @@ export function GeneralDesignsGrid({ designs }: { designs: GeneralDesign[] }) {
                 src={design.image}
                 alt={design.title}
                 fill
+                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
                 className="object-cover object-top transition-transform duration-500 group-hover:scale-[1.03]"
               />
             ) : (

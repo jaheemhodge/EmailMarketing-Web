@@ -31,6 +31,9 @@ export function SiteHeader() {
   const pill = scrolled || !isHome || open;
   const light = isHome && !scrolled && !open;
 
+  // The chat preview has its own compact profile header in place of site-wide nav.
+  if (pathname?.startsWith("/new")) return null;
+
   return (
     <header className="pointer-events-none fixed inset-x-0 top-0 z-50 flex justify-center">
       <div

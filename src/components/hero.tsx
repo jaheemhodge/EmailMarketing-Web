@@ -106,7 +106,7 @@ export function Hero() {
                   ) : (
                     <div className="relative aspect-[9/16] w-[72px] overflow-hidden rounded-lg border border-background/15 shadow-soft">
                       {node.image ? (
-                        <Image src={node.image} alt={node.alt} fill className="object-cover object-top" />
+                        <Image src={node.image} alt={node.alt} fill sizes="72px" className="object-cover object-top" />
                       ) : null}
                     </div>
                   )}
