@@ -1,69 +1,42 @@
+import Image from "next/image";
 import Link from "next/link";
-import { SectionHeading } from "@/components/section-heading";
 import { Reveal } from "@/components/reveal";
-import { EmailFrame } from "@/components/email-frame";
 import { caseStudies } from "@/lib/case-studies";
+
+const study = caseStudies[0];
 
 export function WorkPreview() {
   return (
-    <section id="work" className="container-page py-24 md:py-32">
-      <div className="flex flex-col items-start justify-between gap-6 sm:flex-row sm:items-end">
-        <SectionHeading
-          eyebrow="Selected work"
-          title="Flows we've written, designed, and shipped."
-        />
-        <Link
-          href="/work"
-          className="hidden shrink-0 text-sm font-semibold text-accent transition-opacity hover:opacity-80 sm:inline-flex"
-        >
-          View all work →
-        </Link>
-      </div>
+    <section id="work" className="border-t border-border bg-surface/40 py-20 md:py-28">
+      <Reveal className="container-page">
+        <blockquote className="font-display max-w-2xl text-3xl leading-[1.15] font-bold text-balance sm:text-4xl">
+          &ldquo;{study.summary.split(",")[0]}.&rdquo;
+        </blockquote>
+        <p className="mt-4 text-sm font-semibold tracking-widest text-muted uppercase">
+          {study.client} — {study.industry}
+        </p>
+      </Reveal>
 
-      <div className="mt-16 space-y-20">
-        {caseStudies.map((study, i) => (
-          <Reveal key={study.slug} delay={i * 0.1}>
-            <div className="flex flex-col gap-8 lg:flex-row lg:gap-14">
-              <div className="lg:w-72 lg:shrink-0">
-                <p className="text-xs font-semibold tracking-widest text-muted uppercase">
-                  {study.industry}
-                </p>
-                <h3 className="font-display mt-3 text-2xl font-bold">{study.client}</h3>
-                <p className="mt-4 text-sm leading-relaxed text-muted">{study.summary}</p>
-                <ul className="mt-5 flex flex-wrap gap-2">
-                  {study.services.map((s) => (
-                    <li
-                      key={s}
-                      className="rounded-full border border-border px-3 py-1 text-xs text-muted"
-                    >
-                      {s}
-                    </li>
-                  ))}
-                </ul>
-                <Link
-                  href={`/work/${study.slug}`}
-                  className="mt-6 inline-flex text-sm font-semibold text-accent hover:opacity-80"
-                >
-                  View case study →
-                </Link>
-              </div>
-
-              <div className="grid flex-1 grid-cols-2 gap-4 sm:grid-cols-4">
-                {study.pieces.slice(0, 4).map((piece) => (
-                  <EmailFrame key={piece.subject} piece={piece} client={study.client} />
-                ))}
-              </div>
-            </div>
-          </Reveal>
+      <div className="container-page mt-12 grid grid-cols-2 gap-4 sm:grid-cols-4">
+        {study.pieces.slice(0, 4).map((piece, i) => (
+          <div
+            key={piece.subject}
+            className={`relative aspect-[9/16] overflow-hidden rounded-xl border border-border ${
+              i % 2 !== 0 ? "sm:translate-y-10" : ""
+            }`}
+          >
+            {piece.image ? (
+              <Image src={piece.image} alt={piece.subject} fill className="object-cover object-top" />
+            ) : null}
+          </div>
         ))}
       </div>
 
-      <Link
-        href="/work"
-        className="mt-12 inline-flex text-sm font-semibold text-accent hover:opacity-80 sm:hidden"
-      >
-        View all work →
-      </Link>
+      <div className="container-page mt-10">
+        <Link href={`/work/${study.slug}`} className="text-sm font-semibold text-accent hover:opacity-80">
+          Read the full case study →
+        </Link>
+      </div>
     </section>
   );
 }

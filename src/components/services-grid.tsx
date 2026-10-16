@@ -1,25 +1,31 @@
-import { SectionHeading } from "@/components/section-heading";
 import { Reveal } from "@/components/reveal";
 import { services } from "@/lib/content";
 
 export function ServicesGrid() {
   return (
-    <section id="services" className="container-page py-24 md:py-32">
-      <SectionHeading
-        eyebrow="What we do"
-        title="Retention marketing, handled end to end."
-        description="Email and SMS aren't side channels — they're the system that keeps customers coming back. We run all of it."
-      />
-
-      <div className="mt-16 grid gap-px overflow-hidden rounded-2xl border border-border bg-border sm:grid-cols-2">
-        {services.map((service, i) => (
-          <Reveal key={service.number} delay={i * 0.08} className="bg-background p-8 md:p-10">
-            <span className="font-display text-sm text-accent">{service.number}</span>
-            <h3 className="font-display mt-4 text-2xl font-bold">{service.title}</h3>
-            <p className="mt-3 leading-relaxed text-muted">{service.description}</p>
-          </Reveal>
-        ))}
-      </div>
+    <section id="services" className="container-page border-t border-border py-20 md:py-28">
+      <Reveal className="grid gap-8 md:grid-cols-[auto_1fr]">
+        <div className="hidden flex-col justify-between md:flex">
+          {services.map((s) => (
+            <span key={s.number} className="font-display text-6xl font-bold text-border">
+              {s.number}
+            </span>
+          ))}
+        </div>
+        <div className="divide-y divide-border">
+          {services.map((s) => (
+            <div key={s.number} className="flex items-start gap-6 py-7">
+              <span className="font-display text-sm font-bold text-accent-2 md:hidden">
+                {s.number}
+              </span>
+              <div>
+                <h3 className="font-display text-2xl font-bold">{s.title}</h3>
+                <p className="mt-2 max-w-xl leading-relaxed text-muted">{s.description}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </Reveal>
     </section>
   );
 }
