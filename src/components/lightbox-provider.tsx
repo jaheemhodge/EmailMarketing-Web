@@ -1,5 +1,6 @@
 "use client";
 
+import { AnimatePresence, motion } from "framer-motion";
 import { Lightbulb, X, ZoomIn, ZoomOut } from "lucide-react";
 import {
   createContext,
@@ -48,7 +49,9 @@ export function LightboxProvider({ children }: { children: ReactNode }) {
   return (
     <LightboxContext.Provider value={setItem}>
       {children}
-      {item ? <LightboxModal item={item} onClose={close} /> : null}
+      <AnimatePresence>
+        {item ? <LightboxModal key={item.title} item={item} onClose={close} /> : null}
+      </AnimatePresence>
     </LightboxContext.Provider>
   );
 }
@@ -69,12 +72,12 @@ function LightboxModal({ item, onClose }: { item: LightboxItem; onClose: () => v
         }}
       >
         {item.image ? (
-          // eslint-disable-next-line @next/next/no-img-element -- zoom needs a runtime-controlled width next/image's fill/fixed sizing can't express
+          // eslint-disable-next-line @next/next/no-img-element -- zoom needs a runtime-controlled transform next/image's fill/fixed sizing can't express
           <img
             src={item.image}
             alt={item.title}
-            className={`block transition-[width] duration-300 ${
-              zoomed ? "w-[230%] max-w-none" : "h-full w-full object-contain"
+            className={`block h-full w-full origin-top-left object-contain transition-transform duration-300 ${
+              zoomed ? "scale-[2.3]" : ""
             }`}
           />
         ) : (
@@ -100,38 +103,55 @@ function LightboxModal({ item, onClose }: { item: LightboxItem; onClose: () => v
 
       {item.image ? (
         <span className="pointer-events-none absolute top-3 left-3 inline-flex h-9 w-9 items-center justify-center rounded-full bg-background/90 shadow-sm">
-          {zoomed ? (
-            <ZoomOut className="h-4 w-4 text-foreground" strokeWidth={2} />
-          ) : (
-            <ZoomIn className="h-4 w-4 text-foreground" strokeWidth={2} />
-          )}
+          <span className="relative flex h-4 w-4 items-center justify-center">
+            <ZoomIn
+              className={`absolute h-4 w-4 text-foreground transition-opacity duration-150 ${
+                zoomed ? "opacity-0" : "opacity-100"
+              }`}
+              strokeWidth={2}
+            />
+            <ZoomOut
+              className={`absolute h-4 w-4 text-foreground transition-opacity duration-150 ${
+                zoomed ? "opacity-100" : "opacity-0"
+              }`}
+              strokeWidth={2}
+            />
+          </span>
         </span>
       ) : null}
     </div>
   );
 
   return (
-    <div
+    <motion.div
       role="dialog"
       aria-modal="true"
       aria-label={item.title}
       onClick={onClose}
       className="fixed inset-0 z-[100] flex items-center justify-center bg-foreground/80 p-4 backdrop-blur-sm sm:p-8"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 0.2, ease: [0.22, 1, 0.36, 1] }}
     >
       <button
         type="button"
         onClick={onClose}
         aria-label="Close"
-        className="fixed top-4 right-4 z-10 flex h-11 w-11 items-center justify-center rounded-full bg-background text-foreground transition-transform hover:scale-105 sm:top-6 sm:right-6"
+        className="fixed top-4 right-4 z-10 flex h-11 w-11 items-center justify-center rounded-full bg-background text-foreground transition-transform hover:scale-105 active:scale-95 sm:top-6 sm:right-6"
       >
         <X className="h-5 w-5" strokeWidth={2} />
       </button>
 
-      <div
+      <motion.div
         onClick={(e) => e.stopPropagation()}
         className={`relative flex max-h-[88vh] w-full flex-col overflow-hidden rounded-2xl bg-surface shadow-2xl ${
           hasAnalysis ? "max-w-3xl sm:flex-row" : "max-w-md"
         }`}
+        initial={{ opacity: 0, scale: 0.96 }}
+        animate={{ opacity: 1, scale: 1 }}
+        exit={{ opacity: 0, scale: 0.96 }}
+        transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
       >
         {imagePane}
 
@@ -169,7 +189,7 @@ function LightboxModal({ item, onClose }: { item: LightboxItem; onClose: () => v
             <p className="font-display mt-1 text-base font-bold text-balance">{item.title}</p>
           </div>
         )}
-      </div>
-    </div>
+      </motion.div>
+    </motion.div>
   );
 }

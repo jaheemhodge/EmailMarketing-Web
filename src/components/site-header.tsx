@@ -52,7 +52,7 @@ export function SiteHeader() {
         <div className="hidden md:block">
           <Link
             href="/contact"
-            className="inline-flex items-center rounded-full bg-accent px-5 py-2.5 text-sm font-semibold text-background transition-transform hover:scale-[1.03]"
+            className="inline-flex items-center rounded-full bg-accent px-5 py-2.5 text-sm font-semibold text-background transition-transform hover:scale-[1.03] active:scale-[0.97]"
           >
             Book a Call
           </Link>
@@ -66,12 +66,12 @@ export function SiteHeader() {
           className="md:hidden relative z-50 flex h-9 w-9 flex-col items-center justify-center gap-1.5"
         >
           <span
-            className={`h-[1.5px] w-6 bg-foreground transition-transform duration-300 ${
+            className={`h-[1.5px] w-6 bg-foreground transition-transform duration-300 ease-[var(--ease-drawer)] ${
               open ? "translate-y-[3.5px] rotate-45" : ""
             }`}
           />
           <span
-            className={`h-[1.5px] w-6 bg-foreground transition-transform duration-300 ${
+            className={`h-[1.5px] w-6 bg-foreground transition-transform duration-300 ease-[var(--ease-drawer)] ${
               open ? "-translate-y-[3.5px] -rotate-45" : ""
             }`}
           />
@@ -79,7 +79,7 @@ export function SiteHeader() {
       </div>
 
       <div
-        className={`md:hidden fixed inset-x-0 top-[72px] bottom-0 z-40 bg-background transition-transform duration-300 ease-out ${
+        className={`md:hidden fixed inset-x-0 top-[72px] bottom-0 z-40 bg-background transition-transform duration-300 ease-[var(--ease-drawer)] ${
           open ? "translate-x-0" : "translate-x-full"
         }`}
       >

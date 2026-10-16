@@ -1,9 +1,11 @@
 "use client";
 
 import Link from "next/link";
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
+import { EASE_OUT } from "@/lib/motion";
 
 export function Hero() {
+  const reduceMotion = useReducedMotion();
   return (
     <section className="relative overflow-hidden pt-20 pb-24 md:pt-28 md:pb-32">
       <div className="noise-overlay" />
@@ -14,9 +16,9 @@ export function Hero() {
 
       <div className="container-page relative">
         <motion.div
-          initial={{ opacity: 0, y: 12 }}
+          initial={{ opacity: 0, y: reduceMotion ? 0 : 12 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+          transition={{ duration: 0.6, ease: EASE_OUT }}
           className="inline-flex items-center gap-2 rounded-full border border-border bg-surface px-4 py-1.5 text-xs font-medium tracking-wide text-muted uppercase"
         >
           <span className="h-1.5 w-1.5 rounded-full bg-accent" />
@@ -24,9 +26,9 @@ export function Hero() {
         </motion.div>
 
         <motion.h1
-          initial={{ opacity: 0, y: 16 }}
+          initial={{ opacity: 0, y: reduceMotion ? 0 : 16 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
+          transition={{ duration: 0.7, delay: 0.1, ease: EASE_OUT }}
           className="font-display mt-7 max-w-4xl text-5xl leading-[1.03] font-bold text-balance sm:text-6xl md:text-7xl"
         >
           Turn one-time buyers into your{" "}
@@ -34,9 +36,9 @@ export function Hero() {
         </motion.h1>
 
         <motion.p
-          initial={{ opacity: 0, y: 16 }}
+          initial={{ opacity: 0, y: reduceMotion ? 0 : 16 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
+          transition={{ duration: 0.7, delay: 0.2, ease: EASE_OUT }}
           className="mt-7 max-w-xl text-lg leading-relaxed text-muted"
         >
           JAH Media is a retention marketing agency. We plan, write, and build the email &amp;
@@ -45,14 +47,14 @@ export function Hero() {
         </motion.p>
 
         <motion.div
-          initial={{ opacity: 0, y: 16 }}
+          initial={{ opacity: 0, y: reduceMotion ? 0 : 16 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
+          transition={{ duration: 0.7, delay: 0.3, ease: EASE_OUT }}
           className="mt-10 flex flex-wrap items-center gap-4"
         >
           <Link
             href="/contact"
-            className="inline-flex items-center justify-center rounded-full bg-accent px-7 py-3.5 text-sm font-semibold text-background transition-transform hover:scale-[1.03]"
+            className="inline-flex items-center justify-center rounded-full bg-accent px-7 py-3.5 text-sm font-semibold text-background transition-transform hover:scale-[1.03] active:scale-[0.97]"
           >
             Book a Free Retention Audit
           </Link>

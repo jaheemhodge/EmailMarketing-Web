@@ -63,7 +63,7 @@ export function EmailFrame({ piece, client }: { piece: Piece; client?: string })
           </div>
         )}
 
-        <span className="absolute top-3 right-3 flex h-8 w-8 items-center justify-center rounded-full bg-background/90 opacity-0 shadow-sm transition-opacity duration-200 group-hover:opacity-100">
+        <span className="absolute top-3 right-3 flex h-8 w-8 scale-90 items-center justify-center rounded-full bg-background/90 opacity-0 shadow-sm transition-[opacity,transform] duration-200 group-hover:scale-100 group-hover:opacity-100">
           <Maximize2 className="h-3.5 w-3.5 text-foreground" strokeWidth={2} />
         </span>
       </div>

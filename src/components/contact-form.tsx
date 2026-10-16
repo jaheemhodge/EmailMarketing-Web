@@ -79,7 +79,7 @@ export function ContactForm() {
 
       <button
         type="submit"
-        className="inline-flex w-full items-center justify-center rounded-full bg-accent px-7 py-3.5 text-sm font-semibold text-background transition-transform hover:scale-[1.02] sm:w-auto"
+        className="inline-flex w-full items-center justify-center rounded-full bg-accent px-7 py-3.5 text-sm font-semibold text-background transition-transform hover:scale-[1.02] active:scale-[0.97] sm:w-auto"
       >
         Send it over
       </button>

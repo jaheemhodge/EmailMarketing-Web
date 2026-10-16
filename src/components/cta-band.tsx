@@ -18,7 +18,7 @@ export function CtaBand() {
           </p>
           <Link
             href="/contact"
-            className="mt-9 inline-flex items-center justify-center rounded-full bg-accent px-8 py-4 text-sm font-semibold text-background transition-transform hover:scale-[1.03]"
+            className="mt-9 inline-flex items-center justify-center rounded-full bg-accent px-8 py-4 text-sm font-semibold text-background transition-transform hover:scale-[1.03] active:scale-[0.97]"
           >
             Book a Free Retention Audit
           </Link>
