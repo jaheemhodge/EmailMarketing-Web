@@ -101,10 +101,13 @@ export function ChatHome() {
   return (
     <div className="mx-auto w-full max-w-[680px] px-5 pt-14 pb-24 sm:px-6 sm:pt-20">
       <div className="text-center">
-        <p className="font-display text-lg font-bold tracking-tight text-foreground">JAH Media</p>
+        <p className="font-display text-lg font-bold tracking-tight text-foreground">
+          JAHBRANDSLLC
+        </p>
         <p className="mt-2 text-sm text-muted">Retention marketing for ecommerce brands.</p>
         <p className="mx-auto mt-1 max-w-sm text-sm text-muted">
-          Email strategy, copy, and design that give customers a reason to come back.
+          I&apos;ve worked with Bitter Truth Coffee — and I design emails for other brands on the
+          side to build my portfolio. I don&apos;t necessarily work with them.
         </p>
       </div>
 
