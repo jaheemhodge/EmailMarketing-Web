@@ -15,11 +15,11 @@ const delayForBlock = (block: (typeof chatScript)[number]) => {
   switch (block.type) {
     case "portfolio":
     case "service-cards":
-      return 650;
+      return 1300;
     case "process":
-      return 550;
+      return 1100;
     default:
-      return 450;
+      return 900;
   }
 };
 
@@ -45,7 +45,7 @@ export function ChatHome() {
         setTyping(false);
         setRevealedCount((c) => Math.max(c, i + 1));
         i += 1;
-        timers.push(setTimeout(step, 180));
+        timers.push(setTimeout(step, 450));
       }, delayForBlock(chatScript[i]));
       timers.push(t);
     }
